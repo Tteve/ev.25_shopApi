@@ -2,12 +2,21 @@ from rest_framework import serializers
 from rating.models import Review
 
 
+class ReviewActionSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.email')
+    product = serializers.ReadOnlyField(source='product.title')
+
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+
 class ReviewSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.email')
 
     class Meta:
         model = Review
-        fields = '__all__'
+        fields = '__all__' #rating text
 
     def validate(self, attrs):
         request = self.context['request']

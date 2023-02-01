@@ -10,3 +10,12 @@ def send_confirmation_email(user, code):
         [user],
         fail_silently=False
     )
+
+
+def send_reset_email(user):
+    code = user.activation_code
+    email = user.email
+    send_mail('Letter with password reset code!', f"Your reset code {code}", 'from@example.com', [email, ],
+              fail_silently=False)
+
+
