@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import permissions
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -40,7 +40,7 @@ class ActivationView(APIView):
             user.activation_code = ''
             user.save()
             return Response({'msg': 'Successfully activated!'}, status=200)
-        except User.DoesNotExists:
+        except User.DoesNotExist:
             return Response({'msg': 'Link expired!'}, status=400)
 
 
@@ -71,7 +71,7 @@ class ForgotPasswordView(APIView):
             user.save()
             send_reset_email(user)
             return Response('Check your email! We sent a code!', status=200)
-        except User.DoesNotExists:
+        except User.DoesNotExist:
             return Response('User with this email does not exists!', status=400)
 
 
@@ -83,3 +83,9 @@ class RestorePasswordView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response('Password changed successfully!')
+
+
+class UserListApiView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
+
