@@ -19,3 +19,16 @@ def send_reset_email(user):
               fail_silently=False)
 
 
+def send_notification(user_email, order_id, price):
+    send_mail(
+        'Уведомление о создании заказа',
+        f'''Вы создали заказ №{order_id}, ожидайте звонка!'
+        Полная стоимость вашего заказа: {price}.
+        Спасибо за то что выбрали нас!''',
+        'from@example.com',
+        [user_email], 
+        fail_silently=False
+    )
+    
+
+

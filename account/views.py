@@ -83,15 +83,3 @@ class RestorePasswordView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response('Password changed successfully!')
-
-
-
-
-
-
-
-
-
-
-
-
