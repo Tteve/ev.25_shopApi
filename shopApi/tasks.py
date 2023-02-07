@@ -19,10 +19,8 @@ def send_notification_task(user_email, order_id, price):
 def send_spam_email():
     ls = [user.email for user in Spam_Contacts.objects.all()]
     send_mail(
-        'Что еще принести?',
-        # 'SPAM SPAM SPAM',
-        # 'THIS IS LETTER FOR YOU FROM ARNI!',
-        'а?',
+        'SPAM SPAM SPAM',
+        'THIS IS LETTER FOR YOU FROM ARNI!',
         'asdq2780@gmail.com',
         [*ls],  # [asdq2780@gmail.com, taevem@icloud.com]
         fail_silently=False
