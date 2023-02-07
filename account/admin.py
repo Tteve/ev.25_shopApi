@@ -1,6 +1,5 @@
 from django.contrib import admin
+from account.models import CustomUser, Spam_Contacts
 
-from account.models import CustomUser
-
-# Register your models here.
 admin.site.register(CustomUser)
+admin.site.register(Spam_Contacts)
